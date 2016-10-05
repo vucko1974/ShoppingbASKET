@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class CheckoutBasket {
 
-    private Double totalPrice = new Double(0.00);
-
     private List<Product> basketItems = new ArrayList<>(10);
 
     private List<Offer> offers = new ArrayList<>(10);
@@ -30,25 +28,26 @@ public class CheckoutBasket {
 
     public void addItemToBasket(Product item){
         basketItems.add(item);
-        //totalPrice = calcualteTotal();
     }
 
     public void removeItemFromBasket(Product item){
         basketItems.remove(item);
-        //totalPrice = calcualteTotal();
     }
 
     public void removeAllItemsFromBasket(){
         basketItems.clear();
-        this.totalPrice = 0.00;
     }
 
     public Double getTotalPrice(){
-        return this.totalPrice = calcualteTotal();
+        return calcualteTotal();
     }
 
     private Double calcualteTotal(){
         Double newTotal = 0.00;
+
+        if(basketItems.isEmpty()){
+            return 0.00;
+        }
 
         for(Product item : basketItems ){
             newTotal = newTotal + item.getPrice();
